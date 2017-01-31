@@ -1,0 +1,7 @@
+.idea/
+.gradle/
+app/app.iml
+build/
+gradle/
+local.properties
+docchecker.iml
