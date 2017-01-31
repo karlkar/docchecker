@@ -17,6 +17,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
@@ -34,14 +35,11 @@ import pl.kksionek.docchecker.model.DocRecyclerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
-
     public static final String PREF_ID_REQUESTS = "ID_REQUESTS";
     public static final String PREF_PAS_REQUESTS = "PAS_REQUESTS";
-
     public static final int LENGTH_OF_ID_CASE_NUM = 23;
     public static final int LENGTH_OF_PAS_CASE_NUM = -1; // passports currently not enabled
-
+    private static final String TAG = "MainActivity";
     private DocRecyclerAdapter mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private SharedPreferences mSharedPreferences;
@@ -249,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this,
                     "[" + reqNum + "] " + doc.getErrorMessage(),
                     Toast.LENGTH_LONG).show();
+            FirebaseCrash.log("Error returned from server: " + doc.getErrorMessage());
             removeDocWithReqNum(doc.getNumber());
             return;
         }
@@ -263,6 +262,8 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     removeDocWithReqNum(reqNum);
                 } else {
+                    FirebaseCrash.log("HttpException took place.");
+                    FirebaseCrash.report(throwable);
                     Log.e(TAG, "getIdStatusFromNetwork: Req num [" + reqNum
                             + "] caused HttpException [" + ex.code() + "] " + ex.getMessage());
                 }
@@ -275,6 +276,11 @@ public class MainActivity extends AppCompatActivity {
                 return;
             } else if (throwable instanceof IOException) {
                 // network problem
+                FirebaseCrash.log("IOException took place.");
+                FirebaseCrash.report(throwable);
+            } else {
+                FirebaseCrash.log("Exception took place.");
+                FirebaseCrash.report(throwable);
             }
             Log.d(TAG, "getIdStatusFromNetwork: Req num [" + reqNum + "] failed with error "
                     + throwable.getMessage());

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "363724507539",
+    "firebase_url": "https://docchecker-4096c.firebaseio.com",
+    "project_id": "docchecker-4096c",
+    "storage_bucket": "docchecker-4096c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363724507539:android:ea148296a136e6f7",
+        "android_client_info": {
+          "package_name": "pl.kksionek.docchecker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363724507539-cvgvt3p0se8cbjmsm6tl4bdkcgl9vqml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pl.kksionek.docchecker",
+            "certificate_hash": "6319B737CDDF8D477E60EC41D3DAB79A3C345767"
+          }
+        },
+        {
+          "client_id": "363724507539-2sk8fhq8r45kad2bng3gt77gdh75r9dn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_CffHVg8OdJjK8EF5o8MLbWGbIeaK-IA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363724507539-2sk8fhq8r45kad2bng3gt77gdh75r9dn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
