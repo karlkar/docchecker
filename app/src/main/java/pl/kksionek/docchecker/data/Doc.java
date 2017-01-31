@@ -1,7 +1,7 @@
 package pl.kksionek.docchecker.data;
 
 public class Doc {
-    public static Doc EMPTY = new Doc();
+    public static final Doc EMPTY = new Doc();
 
     public static Doc error(String reqNum, Throwable throwable) {
         return new Doc(reqNum, throwable);

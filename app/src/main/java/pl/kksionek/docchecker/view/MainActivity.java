@@ -40,11 +40,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREF_PAS_REQUESTS = "PAS_REQUESTS";
 
     public static final int LENGTH_OF_ID_CASE_NUM = 23;
-    public static final int LENGTH_OF_PAS_CASE_NUM = 16;
+    public static final int LENGTH_OF_PAS_CASE_NUM = -1; // passports currently not enabled
 
     private DocRecyclerAdapter mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private FloatingActionButton mFab;
     private SharedPreferences mSharedPreferences;
     private Gson mGson;
 
@@ -62,15 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
         mSwipeRefreshLayout.setOnRefreshListener(() -> getData(false));
 
-        mFab = (FloatingActionButton) findViewById(R.id.activity_main_fab);
-        mFab.setOnClickListener(v -> {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.activity_main_fab);
+        fab.setOnClickListener(v -> {
             final EditText editText = new EditText(MainActivity.this);
             editText.setSingleLine();
             editText.setMaxLines(1);
             editText.setImeOptions(EditorInfo.IME_ACTION_DONE);
             editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(23)});
             new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("Podaj numer wniosku")
+                    .setTitle(R.string.activity_main_alert_input_number)
                     .setView(editText)
                     .setCancelable(false)
                     .setPositiveButton(android.R.string.ok, (dialog, which) -> {

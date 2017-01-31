@@ -3,8 +3,6 @@ package pl.kksionek.docchecker.model;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import io.reactivex.Observable;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import pl.kksionek.docchecker.data.DocId;
 import pl.kksionek.docchecker.data.DocPas;
 import retrofit2.Retrofit;
@@ -28,16 +26,16 @@ public interface ObywatelGovInterface {
 
     class Factory {
         public static ObywatelGovInterface create() {
-            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(httpLoggingInterceptor)
-                    .build();
+//            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+//            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                    .addInterceptor(httpLoggingInterceptor)
+//                    .build();
             return new Retrofit.Builder()
                     .baseUrl("https://obywatel.gov.pl")
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(okHttpClient)
+//                    .client(okHttpClient)
                     .build()
                     .create(ObywatelGovInterface.class);
         }

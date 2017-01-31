@@ -89,13 +89,13 @@ public class DocRecyclerAdapter extends RecyclerView.Adapter<DocRecyclerAdapter.
 
     public class DocViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView typeIcon;
-        TextView title;
-        TextView reqStatus;
-        TextView docStatus;
-        ImageView statusIcon;
-        TextView message;
-        TextView timestamp;
+        final ImageView typeIcon;
+        final TextView title;
+        final TextView reqStatus;
+        final TextView docStatus;
+        final ImageView statusIcon;
+        final TextView message;
+        final TextView timestamp;
 
         public DocViewHolder(View itemView) {
             super(itemView);

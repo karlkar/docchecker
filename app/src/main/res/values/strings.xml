@@ -4,4 +4,5 @@
     <string name="recycler_item_req_status">Status wniosku:</string>
     <string name="activity_main_request_number_incorrect">[%1$s] Numer wniosku jest niepoprawny</string>
     <string name="activity_main_no_internet">Sprawdź połączenie z internetem</string>
+    <string name="activity_main_alert_input_number">Podaj numer wniosku</string>
 </resources>

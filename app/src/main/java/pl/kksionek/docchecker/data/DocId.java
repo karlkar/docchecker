@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class DocId extends Doc {
 
     private static final String TAG = "DocId";
