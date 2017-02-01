@@ -36,10 +36,6 @@ public class DocId extends Doc {
         mTimestamp = 0;
     }
 
-    public void setTimestamp(long timestamp) {
-        mTimestamp = timestamp;
-    }
-
     @Override
     public String getNumber() {
         return mReqNumber;
@@ -47,6 +43,11 @@ public class DocId extends Doc {
 
     @Override
     public String getReqStatus() {
+        switch (mReqStatus) {
+            case "SPERSONALIZOWANY":
+                return "Spersonalizowany";
+        }
+        Log.d(TAG, "getReqStatus: Unknown status " + mReqStatus);
         return mReqStatus;
     }
 
@@ -57,6 +58,8 @@ public class DocId extends Doc {
                 return "Wysłany";
             case "PRZYJETY_PRZEZ_URZAD":
                 return "Przyjęty przez urząd";
+            case "WYDANY":
+                return "Wydany";
             default:
                 Log.d(TAG, "getDocStatus: Unknown status " + mDocStatus);
                 return mDocStatus;
@@ -77,6 +80,10 @@ public class DocId extends Doc {
         return mTimestamp;
     }
 
+    public void setTimestamp(long timestamp) {
+        mTimestamp = timestamp;
+    }
+
     @Nullable
     public String getErrorMessage() {
         if (isError()) {
@@ -87,6 +94,15 @@ public class DocId extends Doc {
 
     private boolean isError() {
         return mDocStatus == null || mReqStatus == null;
+    }
+
+    @Override
+    public boolean isReady() {
+        if (mStatus == null || mStatus.mMessage == null) {
+            return false;
+        }
+        return mStatus.mMessage.contains("jest gotowy do odbioru")
+                || mStatus.mMessage.contains("został odebrany");
     }
 
     private class Status {

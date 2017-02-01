@@ -44,10 +44,8 @@ public class DocRecyclerAdapter extends RecyclerView.Adapter<DocRecyclerAdapter.
         holder.title.setText(document.getNumber());
         holder.reqStatus.setText(document.getReqStatus());
         holder.docStatus.setText(document.getDocStatus());
-        String message = document.getMessage();
         holder.statusIcon.setImageResource(
-                (message != null && message.contains("jest gotowy do odbioru"))
-                        ? R.drawable.ic_approve : R.drawable.ic_info);
+                document.isReady() ? R.drawable.ic_approve : R.drawable.ic_info);
         holder.message.setText(document.getMessage());
         holder.timestamp.setText(sDateFormatter.format(new Date(document.getTimestamp())));
     }
@@ -87,7 +85,7 @@ public class DocRecyclerAdapter extends RecyclerView.Adapter<DocRecyclerAdapter.
         return null;
     }
 
-    public class DocViewHolder extends RecyclerView.ViewHolder {
+    class DocViewHolder extends RecyclerView.ViewHolder {
 
         final ImageView typeIcon;
         final TextView title;
@@ -97,7 +95,7 @@ public class DocRecyclerAdapter extends RecyclerView.Adapter<DocRecyclerAdapter.
         final TextView message;
         final TextView timestamp;
 
-        public DocViewHolder(View itemView) {
+        DocViewHolder(View itemView) {
             super(itemView);
             typeIcon = (ImageView) itemView.findViewById(R.id.recycler_item_doc_type_image);
             title = (TextView) itemView.findViewById(R.id.recycler_item_title);

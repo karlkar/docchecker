@@ -2,20 +2,18 @@ package pl.kksionek.docchecker.data;
 
 public class Doc {
     public static final Doc EMPTY = new Doc();
-
-    public static Doc error(String reqNum, Throwable throwable) {
-        return new Doc(reqNum, throwable);
-    }
-
     private String mReqNum = null;
     private Throwable mThrowable = null;
-
     Doc() {
     }
 
-    Doc(String reqNum, Throwable throwable) {
+    private Doc(String reqNum, Throwable throwable) {
         mReqNum = reqNum;
         mThrowable = throwable;
+    }
+
+    public static Doc error(String reqNum, Throwable throwable) {
+        return new Doc(reqNum, throwable);
     }
 
     public String getNumber() {
@@ -38,9 +36,6 @@ public class Doc {
         return null;
     }
 
-    public void setTimestamp(long timestamp) {
-    }
-
     public boolean isNotEmpty() {
         return getNumber() != null || getThrowable() != null;
     }
@@ -49,7 +44,14 @@ public class Doc {
         return 0;
     }
 
+    public void setTimestamp(long timestamp) {
+    }
+
     public Throwable getThrowable() {
         return mThrowable;
+    }
+
+    public boolean isReady() {
+        return false;
     }
 }
